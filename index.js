@@ -133,13 +133,14 @@ console.log(getAllWinners(getWinners(getFinals(fifaData)),getYears(getFinals(fif
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
+function getCountryWins(data, ti) {
 
     /* code here */
 
 };
 
-getCountryWins();
+console.log("Task 7 below: ");
+console.log(getCountryWins(fifaData, JPN));
 
 
 /* Task 8: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
