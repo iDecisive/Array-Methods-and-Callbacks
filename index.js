@@ -4,13 +4,43 @@ console.log(fifaData);
 
 // ⚽️ M  V P ⚽️ //
 
-/* Task 1: Investigate the data above. Practice accessing data by console.log-ing the following pieces of data 
+/* Task 1: Investigate the data above. Practice accessing data by console.log-ing the following pieces of data */
 
-(a) Home Team name for 2014 world cup final
-(b) Away Team name for 2014 world cup final
-(c) Home Team goals for 2014 world cup final
-(d) Away Team goals for 2014 world cup final
-(e) Winner of 2014 world cup final */
+//(a) Home Team name for 2014 world cup final //line 18219???
+
+let getIndex = (year, stage) => {
+
+    let arr; //data to be returned later
+
+    for (let i=0; i<fifaData.length; i++) {
+
+        if (fifaData[i].Year === year && fifaData[i].Stage === stage) {
+
+            return i;
+
+        }
+    }
+}
+
+console.log(getIndex(2014, "Final")); //Logging this function to find the index number of this item - namely the 2014 world cup final item in the array
+
+console.log("Task 1 (a): " + fifaData[828]["Home Team Name"]);
+
+//(b) Away Team name for 2014 world cup final
+
+console.log("Task 1 (b): " + fifaData[828]["Away Team Name"]);
+
+//(c) Home Team goals for 2014 world cup final
+
+console.log("Task 1 (c): " + fifaData[828]["Home Team Goals"]);
+
+//(d) Away Team goals for 2014 world cup final
+
+console.log("Task 1 (d): " + fifaData[828]["Away Team Goals"]);
+
+//(e) Winner of 2014 world cup final */
+
+console.log("Task 1 (e): " + fifaData[828]["Win conditions"]);
 
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
