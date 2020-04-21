@@ -163,13 +163,87 @@ console.log(getCountryWins(fifaData, "JPN"));
 
 /* Task 8: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
 
-function getGoals(/* code here */) {
+function mergeDuplicates(arr) { //Will consolidate data and get the average score per appearance
 
-    /* code here */
+    for (let i=0; i<arr.length; i++) {
+
+        let refIndex = i; //Reference index meaning the object being used as reference if there are duplicates
+
+        let appearances = 1; //will be the number of times a team plays in finals
+
+        for (let x=refIndex+1; x<arr.length; x++) {
+
+            if (arr[refIndex].Team === arr[x].Team) {
+
+                appearances++;
+
+                arr[refIndex].Score = arr[refIndex].Score + arr[x].Score;
+                arr.splice(x, 1);
+
+            }
+        }
+
+        arr[refIndex].Score = (arr[refIndex].Score / appearances); //Averages based on appearance
+
+    }
+}
+
+function findHighestScore(data) { //Find the index in an array containing the highest score
+
+    let highestScore = 0;
+    let Index;
+
+    for (let i=0; i<data.length; i++) {
+
+        if (data[i].Score > highestScore) {
+
+            highestScore = data[i].Score;
+            Index = i;
+
+        }
+
+    }
+
+    return Index;
+
+}
+
+function getGoals(data) {
+
+    let finals = getFinals(data);
+
+    let scores = []; //team name and score
+
+    for (let i=0; i<finals.length; i++) {
+
+        let obj1 = {}; //Temp object used for pushing data into the array - specifically for home team data
+        let obj2 = {}; //Same thing as above but for away team
+
+        obj1 = { 
+            "Team": finals[i]["Home Team Name"], 
+            "Score": finals[i]["Home Team Goals"] 
+        };
+
+        obj2 = { 
+            "Team": finals[i]["Away Team Name"], 
+            "Score": finals[i]["Away Team Goals"] 
+        };
+
+        scores.push(obj1);
+        scores.push(obj2);
+
+    }
+
+    mergeDuplicates(scores);
+
+    console.log(scores);    
+
+    return scores[findHighestScore(scores)].Team;
 
 };
 
-getGoals();
+console.log("Task 8 below: ")
+console.log(getGoals(fifaData));
 
 
 /* Task 9: Write a function called badDefense() that accepts a parameter `data` and calculates the team with the most goals scored against them per appearance (average goals against) in the World Cup finals */
