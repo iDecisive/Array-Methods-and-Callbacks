@@ -61,11 +61,11 @@ function getYears(cb) {
     let data = cb;
     let years = [];
 
-    for (let i=0; i<cb.length; i++) {
+    cb.forEach(item => { //eaiser to use map here probably
 
-        years.push(cb[i].Year)
+        years.push(item.Year);
 
-    }
+    });
 
     return years;
 };
@@ -303,3 +303,4 @@ console.log(getAverageGoals(fifaData));
 /// STRETCH 🥅 //
 
 /* Use the space below to work on any stretch goals of your chosing as listed in the README file. */
+
