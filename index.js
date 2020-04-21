@@ -248,24 +248,56 @@ console.log(getGoals(fifaData));
 
 /* Task 9: Write a function called badDefense() that accepts a parameter `data` and calculates the team with the most goals scored against them per appearance (average goals against) in the World Cup finals */
 
-function badDefense(/* code here */) {
+function badDefense(data) { //Pretty much a copy of above - the objects inside have been changed for the opposite score
 
-    /* code here */
+    let finals = getFinals(data);
+
+    let scores = []; //team name and score
+
+    for (let i=0; i<finals.length; i++) {
+
+        let obj1 = {}; //Temp object used for pushing data into the array - specifically for home team data
+        let obj2 = {}; //Same thing as above but for away team
+
+        obj1 = { 
+            "Team": finals[i]["Home Team Name"], 
+            "Score": finals[i]["Away Team Goals"] //Home Team Goals changed to Away Team Goals
+        };
+
+        obj2 = { 
+            "Team": finals[i]["Away Team Name"], 
+            "Score": finals[i]["Home Team Goals"] //Away Team Goals changed to Home Team Goals
+        };
+
+        scores.push(obj1);
+        scores.push(obj2);
+
+    }
+
+    mergeDuplicates(scores);
+
+    console.log(scores);    
+
+    return scores[findHighestScore(scores)].Team;
 
 };
 
-badDefense();
+console.log("Task 9 below: ")
+console.log(badDefense(fifaData));
 
 
 /* Task 10: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
-function getAverageGoals(/* code here */) {
+function getAverageGoals(data) {
 
-    /* code here */
+    let avgHome = data.reduce((acc, cur, index) => acc + data[index]["Home Team Goals"],0) / data.length;
+    let avgAway = data.reduce((acc, cur, index) => acc + data[index]["Away Team Goals"],0) / data.length;
+
+    return "Average Home Goals: " + avgHome + ", Average Away Goals " + avgAway;
 
 };
-
-getAverageGoals();
+console.log("Task 10 below: ")
+console.log(getAverageGoals(fifaData));
 
 
 /// STRETCH 🥅 //
