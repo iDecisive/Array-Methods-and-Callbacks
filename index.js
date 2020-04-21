@@ -135,12 +135,30 @@ Hint: use `.reduce` */
 
 function getCountryWins(data, ti) {
 
-    /* code here */
+    let gamesIndex = data.filter(item => item["Home Team Initials"] === ti || item["Away Team Initials"] === ti); //Array of indexs numbers of games played by said team
 
-};
+    //Games the given team won within the gamesIndex array V
+    let wonIndex = gamesIndex.reduce((acc,item) => { 
+
+        if (item["Home Team Initials"] === ti && item["Home Team Goals"] > item["Away Team Goals"]) {
+
+            return acc + 1;
+
+        }else if (item["Away Team Initials"] === ti && item["Home Team Goals"] < item["Away Team Goals"]) {
+
+            return acc + 1;
+        }
+
+        return acc;
+
+    },0)
+
+    return wonIndex;
+
+}
 
 console.log("Task 7 below: ");
-console.log(getCountryWins(fifaData, JPN));
+console.log(getCountryWins(fifaData, "JPN"));
 
 
 /* Task 8: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
