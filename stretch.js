@@ -14,7 +14,8 @@ let data2HTML = _ => {
 console.log("Stretch below: ");
 console.log(data2HTML());
 
-let div = document.createElement("div"); //Not sure why this doesn't work
-div.className = "stretchtest";
-div.innerHTML = data2HTML(); 
+let body = document.querySelector('body');
+let dataspan = document.createElement('span');
 
+dataspan.innerHTML = data2HTML();
+body.appendChild(dataspan);
